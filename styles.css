@@ -202,7 +202,6 @@ body {
     box-shadow: 0 10px 25px rgba(44, 94, 58, 0.3);
 }
 
-/* ===== SECCIONES GENERALES ===== */
 .section_title {
     text-align: center;
     padding: 80px 20px 40px;
@@ -246,7 +245,6 @@ body {
     opacity: 0.8;
 }
 
-/* ===== CONTENEDORES PRINCIPALES ===== */
 .main-container {
     max-width: 1400px;
     margin: 0 auto;
@@ -255,7 +253,6 @@ body {
     gap: 30px;
 }
 
-/* ===== BANNER INFORMATIVO ===== */
 .info-banner {
     background: linear-gradient(135deg, var(--primary-color) 0%, #3a7a4c 100%);
     color: white;
@@ -284,7 +281,6 @@ body {
     line-height: 1.6;
 }
 
-/* ===== FILTROS ===== */
 .filter-buttons {
     display: flex;
     justify-content: center;
@@ -314,7 +310,6 @@ body {
     transform: translateY(-2px);
 }
 
-/* ===== SIDEBAR ===== */
 .sidebar-info {
     position: sticky;
     top: 100px;
