@@ -1,5 +1,5 @@
 :root {
-    --primary-color: #2c5e3a;
+    --primary-color: #312e2e;
     --secondary-color: #b8860b;
     --light-color: #f8f5e9;
     --dark-color: #3a2c1f;
@@ -7,7 +7,7 @@
     --bg-color: #f8f5e9;
     --card-bg: #fffef9;
     --shadow: rgba(139, 69, 19, 0.1);
-    --transition: all 0.3s ease;
+    --transition: all 0.5s ease;
 }
 
 .dark-mode {
@@ -151,6 +151,7 @@ body {
     animation: backgroundTransition 10s ease-in-out infinite;
     padding: 100px 20px 40px;
     position: relative;
+    border-bottom: 3px solid var(--secondary-color);
 }
 
 .panel-content {
@@ -159,7 +160,8 @@ body {
     padding: 40px;
     background: rgba(255, 255, 255, 0.9);
     border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 40px var(--primary-color);
+    border: 3px solid rgba(184, 134, 11, 0.5);
 }
 
 .dark-mode .panel-content {
@@ -486,113 +488,6 @@ body {
     color: var(--text-color);
     line-height: 1.7;
     margin: 0;
-}
-
-/* ===== SECCIONES ADICIONALES ===== */
-.about-section,
-.courses-section,
-.contact-section {
-    padding: 80px 20px;
-}
-
-.about-section {
-    background: linear-gradient(to bottom, var(--light-color), var(--bg-color));
-}
-
-.about-content {
-    display: flex;
-    gap: 50px;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.about-text {
-    flex: 2;
-}
-
-.about-text h3 {
-    color: var(--primary-color);
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-.about-stats {
-    flex: 1;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-.stat {
-    text-align: center;
-    padding: 20px;
-    background: var(--card-bg);
-    border-radius: 10px;
-    border: 2px solid var(--secondary-color);
-}
-
-.stat h4 {
-    font-size: 2rem;
-    color: var(--primary-color);
-    margin-bottom: 5px;
-}
-
-.courses-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.course-card {
-    background: var(--card-bg);
-    padding: 30px;
-    border-radius: 15px;
-    border: 2px solid var(--secondary-color);
-    text-align: center;
-    transition: var(--transition);
-    text-decoration: none;
-    color: var(--text-color);
-}
-
-.course-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px var(--shadow);
-    border-color: var(--primary-color);
-}
-
-.course-card i {
-    font-size: 3rem;
-    color: var(--primary-color);
-    margin-bottom: 20px;
-}
-
-.course-card h3 {
-    color: var(--primary-color);
-    margin-bottom: 15px;
-    font-size: 1.5rem;
-}
-
-.contact-info {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 40px;
-    text-align: center;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.contact-item i {
-    font-size: 2.5rem;
-    color: var(--primary-color);
-    margin-bottom: 15px;
-}
-
-.contact-item h3 {
-    color: var(--secondary-color);
-    margin-bottom: 10px;
 }
 
 /* ===== FOOTER ===== */
