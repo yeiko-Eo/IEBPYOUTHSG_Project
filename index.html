@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="/img/icon_website.png" type="image/x-icon">
 </head>
 <body>
     
@@ -32,7 +33,7 @@
                 <li class="nav-item inicio"><a href="#myMain"><i class="fas fa-home"></i> <span>Inicio</span></a></li>
                 <li class="nav-item nosotros"><a href="#nosotros"><i class="fas fa-church"></i> <span>Nosotros</span></a></li>
                 <li class="nav-item actividades"><a href="#actividades"><i class="fas fa-calendar-alt"></i> <span>Actividades</span></a></li>
-                <li class="nav-item horarios"><a href="#horarios"><i class="far fa-clock"></i> <span>Horarios</span></a></li>
+                <li class="nav-item horarios"><a href="#schedules-section"><i class="far fa-clock"></i> <span>Horarios</span></a></li>
                 <li class="nav-item media"><a href="#redes"><i class="fas fa-share-alt"></i> <span>Redes</span></a></li>
                 <li class="nav-item contacto"><a href="#contactos" class="contact-btn"><i class="fas fa-phone-alt"></i> <span>Contactos</span></a></li>
             </ul>
@@ -112,8 +113,7 @@
         <div class="about-content">
             <div class="about-text">
                 <h3>IEBPYouth</h3>
-                <p style="text-align: justify;">Nuestra misión es fortalecer la formación espiritual y bíblica de la juventud, promoviendo una relación personal con el Espíritu Santo que impulse a vivir y compartir el mensaje transformador de Jesucristo. Buscamos impactar positivamente en nuestro entorno y cumplir con la Gran Comisión, formando discípulos comprometidos con el reino de Dios.</p>
-                <p>Creemos en el poder transformador del evangelio y en la importancia de una comunidad juvenil que crece junta en fe, amor y servicio. Cada joven es valorado como parte esencial del cuerpo de Cristo, con dones y talentos únicos para edificar la iglesia y alcanzar a otros.</p>
+                <p style="text-align: justify;">Nuestra misión es fortalecer la formación espiritual y bíblica de la juventud, promoviendo una relación personal con el Espíritu Santo que impulse a vivir y compartir el mensaje transformador de Jesucristo. Buscamos impactar positivamente en nuestro entorno y cumplir con la Gran Comisión, formando discípulos comprometidos con el reino de Dios. Creemos en el poder transformador del evangelio y en la importancia de una comunidad juvenil que crece junta en fe, amor y servicio. Cada joven es valorado como parte esencial del cuerpo de Cristo, con dones y talentos únicos para edificar la iglesia y alcanzar a otros.</p>
             </div>
             <div class="about-stats">
                 <div class="stat">
@@ -132,8 +132,79 @@
         </div>
     </section>
 
-    <section id="actividades" class="courses-section">
+    <section id="actividades" class="activities-section">
         <div class="section-header">
+            <h2><i class="fas fa-gamepad"></i> Juegos Bíblicos</h2>
+            <p>Aprende y diviértete con nuestros juegos interactivos</p>
+        </div>
+        <div class="games-grid">
+            <div class="game-card available">
+                <div class="game-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3>Adivina el personaje según el Emoji</h3>
+                <p>Descubre el persona según los emojis que se te ofrecen.</p>
+                <div class="game-difficulty">
+                    <span class="difficulty-label">Dificultad:</span>
+                    <span class="difficulty-value easy">Fácil</span>
+                </div>
+                <button class="play-btn" onclick="window.open('https://yeiko-eo.github.io/who-am-i-EmojisVersion/','_blank')">Jugar Ahora</button>
+            </div>
+
+            <div class="game-card available">
+                <div class="game-icon">
+                    <i class="fas fa-crosshairs"></i>
+                </div>
+                <h3>¿Quién soy?</h3>
+                <p>Descubre quién soy según las pistas que se te ofrecen.</p>
+                <div class="game-difficulty">
+                    <span class="difficulty-label">Dificultad:</span>
+                    <span class="difficulty-value medium">Media</span>
+                </div>
+                <button class="play-btn" onclick="window.open('https://yeiko-eo.github.io/who-am-i/','_blank')">Jugar Ahora</button>
+            </div>
+            
+            <div class="game-card available">
+                <div class="game-icon">
+                    <i class="fas fa-puzzle-piece"></i>
+                </div>
+                <h3>Random-Verses</h3>
+                <p>Adivina la cita bíblica según el versículo que se te ofrece.</p>
+                <div class="game-difficulty">
+                    <span class="difficulty-label">Dificultad:</span>
+                    <span class="difficulty-value easy">Fácil</span>
+                </div>
+                <button class="play-btn" onclick="window.open('https://yeiko-eo.github.io/random-verses/','_blank')">Jugar Ahora</button>
+            </div>
+            
+            <div class="game-card">
+                <div class="game-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <h3>Quiz Bíblico</h3>
+                <p>Responde preguntas sobre diferentes libros de la Biblia y gana puntos.</p>
+                <div class="game-difficulty">
+                    <span class="difficulty-label">Dificultad:</span>
+                    <span class="difficulty-value hard">Difícil</span>
+                </div>
+                <button class="play-btn">Jugar Ahora</button>
+            </div>
+            
+            <div class="game-card">
+                <div class="game-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3>Sopa de Letras</h3>
+                <p>Encuentra palabras bíblicas escondidas en una sopa de letras temática.</p>
+                <div class="game-difficulty">
+                    <span class="difficulty-label">Dificultad:</span>
+                    <span class="difficulty-value easy">Fácil</span>
+                </div>
+                <button class="play-btn">Jugar Ahora</button>
+            </div>
+        </div>
+
+        <div class="section-header" style="margin-top: 80px;">
             <h2><i class="fas fa-graduation-cap"></i> Nuestros Estudios Bíblicos</h2>
             <p>Programas de formación espiritual diseñados para jóvenes</p>
         </div>
@@ -156,6 +227,85 @@
         </div>
     </section>
 
+    <!-- Sección de la línea de tiempo -->
+    <section class="schedules-section" id="schedules-section">
+        <div class="container-schedules">
+            <div class="h2-container">
+                <h2 class="h2-schedule">
+                    <i class="far fa-clock"></i> Horarios
+                </h2>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Culto de Mujeres</h3>
+                        <h4>Lunes, de 7:00 - 8:30 Pm</h4>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Culto de Varones</h3>
+                        <h4>Miércoles, de 7:00 - 8:30 Pm</h4>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Culto de Adoración</h3>
+                        <h4>Viernes, de 7:00 - 8:30 Pm</h4>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Culto de Jóvenes</h3>
+                        <h4>Sábado, de 6:00 - 7:30 Pm</h4>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Escuela Dominical</h3>
+                        <h4>Domingo, de 9:00 - 10:30 Am</h4>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Culto General</h3>
+                        <h4>Domingo, de 5:00 - 7:30 Pm</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="redes" class="social-section">
+        <div class="section-header">
+            <h2><i class="fas fa-share-alt"></i> Nuestras Redes</h2>
+            <p>Conéctate con nosotros en las redes sociales</p>
+        </div>
+        <div class="social-grid">
+            <a href="https://www.facebook.com/profile.php?id=61573831628568&locale=es_LA" target="_blank" class="social-card facebook">
+                <i class="fab fa-facebook-f"></i>
+                <h3>Facebook</h3>
+                <p>Síguenos para ver nuestras actividades y eventos</p>
+            </a>
+            <a href="https://www.instagram.com/iebpyouthsg/" target="_blank" class="social-card instagram">
+                <i class="fab fa-instagram"></i>
+                <h3>Instagram</h3>
+                <p>Fotos y videos de nuestras reuniones y actividades</p>
+            </a>
+            <a href="https://www.tiktok.com/@iebpyouthsg?_r=1&_t=ZM-92NxkAgrT4K" target="_blank" class="social-card email">
+                <i class="fab fa-tiktok"></i>
+                <h3>TikTok</h3>
+                <p>Síguenos para ver nuestros estudios y actividades</p>
+            </a>
+        </div>
+    </section>
+
     <section id="contactos" class="contact-section">
         <div class="section-header">
             <h2><i class="fas fa-address-book"></i> Contactos</h2>
@@ -167,7 +317,7 @@
                 <h3>Dirección</h3>
                 <address>
                     <p>
-                        <a href="https://maps.app.goo.gl/pyET6MyGWjoPfkeZ6" target="_blank" rel="noopener noreferrer" aria-label="Abrir ubicación en Google Maps" style="text-decoration: none; color: inherit;font-style: normal;">
+                        <a href="https://maps.app.goo.gl/SuHP6ic89PxE17pW8" target="_blank" rel="noopener noreferrer" aria-label="Abrir ubicación en Google Maps" style="text-decoration: none; color: inherit;font-style: normal;">
                             Iglesia Evangélica El Buen Pastor<br>
                             Ministerio Juvenil IEBPYouth
                         </a>
@@ -195,9 +345,11 @@
             </div>
             <div class="footer-links">
                 <h4>Enlaces Rápidos</h4>
-                <a href="#inicio">Inicio</a>
+                <a href="#myMain">Inicio</a>
                 <a href="#nosotros">Nosotros</a>
                 <a href="#actividades">Actividades</a>
+                <a href="#schedules-section">Horarios</a>
+                <a href="#redes">Redes</a>
                 <a href="#contactos">Contactos</a>
             </div>
             <div class="footer-social">
@@ -214,5 +366,10 @@
         </div>
     </footer>
 
+    <button id="scrollTopBtn" class="scroll-top-btn">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="script.js"></script>
 </body>
 </html>

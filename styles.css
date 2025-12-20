@@ -1,4 +1,4 @@
-:root {
+:root { /*Constantes*/
     --primary-color: #2c5282;
     --secondary-color: #38b2ac;
     --accent-color: #d69e2e;
@@ -37,6 +37,7 @@ body {
         radial-gradient(circle at 80% 20%, rgba(44, 82, 130, 0.03) 0%, transparent 20%);
 }
 
+/* Estilos de Navegación */
 .nav_bar {
     background: var(--gradient-primary);
     color: var(--light-color);
@@ -307,6 +308,7 @@ body {
     z-index: 1;
 }
 
+/* Contenido Principal */
 .main-content {
     margin-top: calc(var(--header-height) + 30px);
     padding: 40px 30px;
@@ -466,6 +468,7 @@ body {
     font-style: italic;
 }
 
+/* Galería */
 .gallery-container {
     background: linear-gradient(145deg, #ffffff, #f5f7fa);
     border-radius: var(--border-radius);
@@ -557,9 +560,11 @@ body {
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
+/* Secciones Generales */
 .about-section,
-.courses-section,
-.contact-section {
+.activities-section,
+.contact-section,
+.social-section {
     width: 100%;
     max-width: 1200px;
     margin: 100px auto;
@@ -685,12 +690,197 @@ body {
     font-size: 0.95rem;
 }
 
-.courses-section {
+/* Sección de Juegos Bíblicos */
+.activities-section {
     background: linear-gradient(to bottom, rgba(247, 250, 252, 0.8), rgba(247, 250, 252, 0.95));
     border-radius: 20px;
     box-shadow: 0 10px 40px rgba(44, 82, 130, 0.08);
 }
 
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto 60px;
+}
+
+.game-card {
+    background: var(--card-bg);
+    padding: 35px 25px;
+    border-radius: 15px;
+    border: 2px solid rgba(56, 178, 172, 0.2);
+    text-align: center;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.game-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+}
+
+.game-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    border-color: var(--accent-color);
+}
+
+.game-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+}
+
+.game-icon i {
+    font-size: 2.5rem;
+    color: white;
+}
+
+.game-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.game-card p {
+    color: var(--font-color);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.game-difficulty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.difficulty-label {
+    color: #718096;
+    font-size: 0.9rem;
+}
+
+.difficulty-value {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.difficulty-value.easy {
+    background-color: rgba(72, 187, 120, 0.15);
+    color: #38a169;
+}
+
+.difficulty-value.medium {
+    background-color: rgba(237, 137, 54, 0.15);
+    color: #ed8936;
+}
+
+.difficulty-value.hard {
+    background-color: rgba(245, 101, 101, 0.15);
+    color: #f56565;
+}
+
+.play-btn {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    width: 100%;
+}
+
+.play-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(44, 82, 130, 0.3);
+}
+
+/* Indicador de juego disponible */
+.game-card.available {
+    position: relative;
+}
+
+.game-card.available::after {
+    content: 'Disponible';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: linear-gradient(135deg, #38a169, #2f855a);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    z-index: 2;
+}
+
+.game-card:not(.available)::after {
+    content: 'Próximamente';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: linear-gradient(135deg, #ed8936, #dd6b20);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    z-index: 2;
+}
+
+/* Para las tarjetas de juegos disponibles, el botón será más llamativo */
+.game-card.available .play-btn {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    position: relative;
+    overflow: hidden;
+}
+
+.game-card.available .play-btn::after {
+    content: '→';
+    position: absolute;
+    right: 15px;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+}
+
+.game-card.available .play-btn:hover::after {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Para los juegos no disponibles, el botón tendrá un estilo diferente */
+.game-card:not(.available) .play-btn {
+    background: linear-gradient(135deg, #a0aec0, #718096);
+    cursor: not-allowed;
+}
+
+.game-card:not(.available) .play-btn:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* Estudios Bíblicos */
 .courses-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -752,6 +942,240 @@ body {
     margin: 0;
 }
 
+/* Sección de Línea de Tiempo */
+.schedules-section {
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-schedules {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.h2-container {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.h2-schedule {
+    font-size: 3rem;
+    color: #2c3e50;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 15px;
+}
+
+.h2-schedule::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to right, #3498db, #2ecc71);
+    border-radius: 2px;
+}
+
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, #3498db, #2ecc71);
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 50px;
+    width: 50%;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.timeline-item:nth-child(odd) {
+    left: 0;
+    padding-right: 60px;
+    text-align: right;
+}
+
+.timeline-item:nth-child(even) {
+    left: 50%;
+    padding-left: 60px;
+}
+
+.timeline-content {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 5px solid #3498db;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+    border-left: none;
+    border-right: 5px solid #2ecc71;
+}
+
+.timeline-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border: 4px solid #3498db;
+    border-radius: 50%;
+    top: 20px;
+    z-index: 1;
+}
+
+.timeline-item:nth-child(odd)::before {
+    right: -10px;
+}
+
+.timeline-item:nth-child(even)::before {
+    left: -10px;
+    border-color: #2ecc71;
+}
+
+.timeline-content h3 {
+    color: #2c3e50;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.timeline-content h4 {
+    color: #7f8c8d;
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin: 0;
+}
+
+/* Sección de Redes Sociales */
+.social-section {
+    background: linear-gradient(145deg, #ffffff, #f5f7fa);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(44, 82, 130, 0.1);
+}
+
+.social-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.social-card {
+    background: var(--card-bg);
+    padding: 40px 30px;
+    border-radius: 15px;
+    border: 2px solid rgba(56, 178, 172, 0.15);
+    text-align: center;
+    transition: var(--transition);
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.social-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    transition: var(--transition);
+}
+
+.social-card.facebook::before {
+    background: #1877F2;
+}
+
+.social-card.instagram::before {
+    background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+}
+
+.social-card.email::before {
+    background: var(--primary-color);
+}
+
+.social-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.social-card i {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    transition: var(--transition);
+}
+
+.social-card.facebook i {
+    color: #1877F2;
+}
+
+.social-card.instagram i {
+    color: #E1306C;
+}
+
+.social-card.email i {
+    color: var(--primary-color);
+}
+
+.social-card:hover i {
+    transform: scale(1.2);
+}
+
+.social-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.social-card p {
+    color: var(--font-color);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Sección de Contactos */
 .contact-section {
     background: linear-gradient(145deg, #ffffff, #f5f7fa);
     border-radius: 20px;
@@ -818,6 +1242,7 @@ body {
     margin: 0;
 }
 
+/* FOOTER */
 .footer {
     background: linear-gradient(135deg, var(--primary-color) 0%, #1a365d 100%);
     color: white;
@@ -946,9 +1371,10 @@ body {
     padding: 30px 30px 0;
 }
 
+/* SCROLL */
 .scroll-top-btn {
     position: fixed;
-    bottom: 100px;
+    bottom: 30px;
     right: 30px;
     width: 50px;
     height: 50px;
@@ -975,18 +1401,35 @@ body {
 
 .scroll-top-btn:hover {
     transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
-@media (min-width: 1201px) {
-    .church-name {
-        font-size: 1.6rem;
+/* ANIMACIONES */
+.timeline-item:nth-child(1) { animation-delay: 0.1s; }
+.timeline-item:nth-child(2) { animation-delay: 0.2s; }
+.timeline-item:nth-child(3) { animation-delay: 0.3s; }
+.timeline-item:nth-child(4) { animation-delay: 0.4s; }
+.timeline-item:nth-child(5) { animation-delay: 0.5s; }
+.timeline-item:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
     }
-    
-    .navList {
-        gap: 12px;
+    50% {
+        opacity: 0.7;
     }
 }
 
+.game-card:not(.available) {
+    animation: pulse 2s infinite;
+}
+
+.game-card:not(.available) .game-icon {
+    opacity: 0.8;
+}
+
+/* RESPONSIVE */
 @media (max-width: 1200px) {
     .main-content {
         grid-template-columns: 1fr;
@@ -1137,8 +1580,9 @@ body {
     }
     
     .about-section,
-    .courses-section,
-    .contact-section {
+    .activities-section,
+    .contact-section,
+    .social-section {
         margin: 60px auto;
         padding: 40px 20px;
     }
@@ -1148,12 +1592,14 @@ body {
         gap: 20px;
     }
     
-    .courses-grid {
+    .courses-grid,
+    .games-grid {
         grid-template-columns: 1fr;
         gap: 25px;
     }
     
-    .contact-info {
+    .contact-info,
+    .social-grid {
         grid-template-columns: 1fr;
         gap: 25px;
     }
@@ -1174,6 +1620,41 @@ body {
     
     .footer-links a {
         justify-content: center;
+    }
+
+    /* Timeline responsive */
+    .schedules-section {
+        padding: 40px 15px;
+    }
+    
+    .h2-schedule {
+        font-size: 2.2rem;
+    }
+    
+    .timeline::before {
+        left: 30px;
+    }
+    
+    .timeline-item {
+        width: 100%;
+        left: 0 !important;
+        padding-right: 0 !important;
+        padding-left: 80px !important;
+        text-align: left !important;
+    }
+    
+    .timeline-item::before {
+        left: 20px !important;
+        right: auto !important;
+    }
+    
+    .timeline-content {
+        border-left: 5px solid #3498db !important;
+        border-right: none !important;
+    }
+    
+    .timeline-item:nth-child(even)::before {
+        border-color: #3498db;
     }
 }
 
@@ -1237,59 +1718,33 @@ body {
         font-size: 2rem;
     }
     
-    .course-card {
+    .course-card,
+    .game-card {
         padding: 30px 20px;
     }
     
-    .contact-item {
+    .contact-item,
+    .social-card {
         padding: 30px 20px;
     }
     
     .section-header h2 {
         font-size: 1.8rem;
     }
-}
 
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-15px);
+    .h2-schedule {
+        font-size: 1.8rem;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    
+    .timeline-content {
+        padding: 20px;
     }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
+    
+    .timeline-content h3 {
+        font-size: 1.5rem;
     }
-    to {
-        opacity: 1;
+    
+    .timeline-content h4 {
+        font-size: 1rem;
     }
 }
-
-.nav-item {
-    animation: slideIn 0.6s ease forwards;
-    animation-delay: calc(var(--item-order) * 0.1s);
-    opacity: 0;
-}
-
-.gallery-item {
-    animation: fadeIn 0.8s ease forwards;
-    animation-delay: calc(var(--item-order) * 0.15s);
-    opacity: 0;
-}
-
-.nav-item:nth-child(1) { --item-order: 1; }
-.nav-item:nth-child(2) { --item-order: 2; }
-.nav-item:nth-child(3) { --item-order: 3; }
-.nav-item:nth-child(4) { --item-order: 4; }
-.nav-item:nth-child(5) { --item-order: 5; }
-.nav-item:nth-child(6) { --item-order: 6; }
-
-.gallery-item:nth-child(1) { --item-order: 1; }
-.gallery-item:nth-child(2) { --item-order: 2; }
-.gallery-item:nth-child(3) { --item-order: 3; }
-.gallery-item:nth-child(4) { --item-order: 4; }
