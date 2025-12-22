@@ -215,6 +215,80 @@ window.addEventListener('scroll', () => {
     });
 });
 
+// Funciones para la sección de horarios
+function toggleAdditionalInfo(infoId) {
+    const infoElement = document.getElementById(infoId);
+    infoElement.classList.toggle('active');
+    
+    // Cambiar el texto del botón
+    const button = infoElement.previousElementSibling;
+    if (infoElement.classList.contains('active')) {
+        button.innerHTML = '<i class="fas fa-times-circle"></i> Ocultar Información';
+    } else {
+        button.innerHTML = '<i class="fas fa-info-circle"></i> Información Especial';
+    }
+}
+
+// Función para obtener el próximo primer domingo
+function getNextFirstSunday() {
+    const today = new Date();
+    const currentMonth = today.getMonth();
+    const currentYear = today.getFullYear();
+    
+    // Buscar el primer domingo del mes actual
+    let firstSunday = new Date(currentYear, currentMonth, 1);
+    
+    // Avanzar hasta encontrar un domingo (0 = domingo)
+    while (firstSunday.getDay() !== 0) {
+        firstSunday.setDate(firstSunday.getDate() + 1);
+    }
+    
+    // Si el primer domingo ya pasó este mes, buscar en el próximo mes
+    if (firstSunday < today) {
+        firstSunday = new Date(currentYear, currentMonth + 1, 1);
+        while (firstSunday.getDay() !== 0) {
+            firstSunday.setDate(firstSunday.getDate() + 1);
+        }
+    }
+    
+    return firstSunday;
+}
+
+// Función para formatear fecha en español
+function formatDateSpanish(date) {
+    const options = { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+    };
+    return date.toLocaleDateString('es-ES', options);
+}
+
+// Función para actualizar la información de fecha
+function updateDateInfo() {
+    const now = new Date();
+    const currentDateElement = document.getElementById('current-date');
+    const nextFirstSundayElement = document.getElementById('next-first-sunday');
+    
+    // Actualizar fecha actual
+    currentDateElement.textContent = formatDateSpanish(now);
+    
+    // Calcular y actualizar próximo primer domingo
+    const nextFirstSunday = getNextFirstSunday();
+    nextFirstSundayElement.textContent = formatDateSpanish(nextFirstSunday);
+    
+    // Verificar si hoy es primer domingo
+    const isFirstSunday = now.getDate() <= 7 && now.getDay() === 0;
+    
+    // Resaltar si hoy es primer domingo
+    if (isFirstSunday) {
+        nextFirstSundayElement.innerHTML = '<strong>¡HOY ES EL PRIMER DOMINGO!</strong>';
+        nextFirstSundayElement.style.color = '#d69e2e';
+        nextFirstSundayElement.style.animation = 'pulse 1s infinite';
+    }
+}
+
 // Inicialización de animaciones en carga
 document.addEventListener('DOMContentLoaded', () => {
     // Añadir retraso de animación a los elementos de navegación
@@ -236,4 +310,19 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.website-card:not(.available)').forEach(card => {
         card.classList.add('disabled');
     });
+    
+    // Inicializar botones de información en horarios
+    const infoButtons = document.querySelectorAll('.info-btn');
+    infoButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const infoId = this.getAttribute('data-info');
+            toggleAdditionalInfo(`info-${infoId}`);
+        });
+    });
+    
+    // Inicializar información de fecha
+    updateDateInfo();
+    
+    // Actualizar la información de fecha cada minuto (opcional)
+    setInterval(updateDateInfo, 60000);
 });

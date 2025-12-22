@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iglesia El Buen Pastor - Juventud</title>
+    <title>Iglesia El Buen Pastor</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
@@ -290,13 +290,14 @@
         </div>
     </section>
 
-    <!-- Sección de la línea de tiempo -->
+    <!-- Sección de Horarios -->
     <section class="schedules-section" id="schedules-section">
         <div class="container-schedules">
             <div class="h2-container">
                 <h2 class="h2-schedule">
                     <i class="far fa-clock"></i> Horarios
                 </h2>
+                <p class="schedule-subtitle">Nuestros cultos y actividades semanales</p>
             </div>
 
             <div class="timeline">
@@ -330,15 +331,49 @@
 
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <h3>Escuela Dominical</h3>
-                        <h4>Domingo, de 9:00 - 10:30 Am</h4>
+                        <div class="schedule-item-header">
+                            <h3>Escuela Dominical</h3>
+                            <h4>Domingo, de 9:00 - 10:30 Am</h4>
+                        </div>
+                        <button class="info-btn" data-info="dominical">
+                            <i class="fas fa-info-circle"></i> Información Especial
+                        </button>
+                        <div class="additional-info" id="info-dominical">
+                            <div class="info-content">
+                                <i class="fas fa-sun"></i>
+                                <p>Si es el primer domingo del mes, será culto matutino, de 5:00 AM - 6:30 AM</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <h3>Culto General</h3>
-                        <h4>Domingo, de 5:00 - 7:30 Pm</h4>
+                        <div class="schedule-item-header">
+                            <h3>Culto General</h3>
+                            <h4>Domingo, de 5:00 - 7:30 Pm</h4>
+                        </div>
+                        <button class="info-btn" data-info="general">
+                            <i class="fas fa-info-circle"></i> Información Especial
+                        </button>
+                        <div class="additional-info" id="info-general">
+                            <div class="info-content">
+                                <i class="fas fa-wine-glass-alt"></i>
+                                <p>Si es el primer domingo del mes, es culto de Santa Cena</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="current-date-info">
+                <div class="date-card">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h4>Hoy es:</h4>
+                    <p id="current-date">Cargando fecha...</p>
+                    <div class="first-sunday-info">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <p>Próximo primer domingo: <span id="next-first-sunday">Calculando...</span></p>
                     </div>
                 </div>
             </div>
@@ -381,8 +416,7 @@
                 <address>
                     <p>
                         <a href="https://maps.app.goo.gl/SuHP6ic89PxE17pW8" target="_blank" rel="noopener noreferrer" aria-label="Abrir ubicación en Google Maps" style="text-decoration: none; color: inherit;font-style: normal;">
-                            Iglesia Evangélica El Buen Pastor<br>
-                            Ministerio Juvenil IEBPYouth
+                            Primera Iglesia De Cristo El Buen Pastor
                         </a>
                     </p>
                 </address>
