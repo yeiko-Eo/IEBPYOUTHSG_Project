@@ -1091,6 +1091,20 @@ body {
     margin: 0;
 }
 
+.btn-download {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-top: 20px;
+    display: inline-block;
+}
+
 /* Sección de Línea de Tiempo */
 .schedules-section {
     padding: 80px 20px;
