@@ -1,331 +1,176 @@
-// Botón de scroll al inicio
+// Scroll-to-top button + timeline reveal on scroll
 const scrollTopBtn = document.getElementById('scrollTopBtn');
-
 window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 300) {
-        scrollTopBtn.classList.add('visible');
-    } else {
-        scrollTopBtn.classList.remove('visible');
+    const y = window.pageYOffset;
+    if (scrollTopBtn) {
+        scrollTopBtn.classList.toggle('visible', y > 300);
     }
-});
 
-scrollTopBtn.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
+    const triggerBottom = window.innerHeight * 0.8;
+    document.querySelectorAll('.timeline-item').forEach(item => {
+        if (item.getBoundingClientRect().top < triggerBottom) item.classList.add('animated');
     });
 });
+if (scrollTopBtn) {
+    scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+}
 
-// Animaciones de entrada para elementos
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
+// Intersection Observer for entry animations
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('animated');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('animated');
     });
-}, observerOptions);
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-// Observar elementos para animaciones
-document.querySelectorAll('.gallery-item, .course-card, .game-card, .website-card, .timeline-item').forEach(el => {
+document.querySelectorAll('.gallery-item, .course-card, .game-card, .website-card').forEach(el => {
     observer.observe(el);
 });
 
-// Efecto suave para enlaces internos
+// Smooth internal links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        
         const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-            window.scrollTo({
-                top: targetElement.offsetTop - 100,
-                behavior: 'smooth'
-            });
+        if (!targetId || targetId === '#') return;
+        const target = document.querySelector(targetId);
+        if (target) {
+            e.preventDefault();
+            window.scrollTo({ top: target.offsetTop - 100, behavior: 'smooth' });
         }
     });
 });
 
-// Cerrar menú móvil al hacer clic en un enlace
+// Close mobile menu on link click
 document.querySelectorAll('.nav-item a').forEach(link => {
     link.addEventListener('click', () => {
         const menuCheckbox = document.getElementById('menu-toggle');
-        if (menuCheckbox.checked) {
-            menuCheckbox.checked = false;
-        }
+        if (menuCheckbox && menuCheckbox.checked) menuCheckbox.checked = false;
     });
 });
 
-// Efecto hover para tarjetas de juegos
+// Hover effect for game/website cards
 document.querySelectorAll('.game-card, .website-card').forEach(card => {
     card.addEventListener('mouseenter', () => {
-        if (!card.classList.contains('disabled')) {
-            card.style.transform = 'translateY(-10px)';
-        }
+        if (!card.classList.contains('disabled')) card.style.transform = 'translateY(-10px)';
     });
-    
     card.addEventListener('mouseleave', () => {
         card.style.transform = 'translateY(0)';
     });
 });
 
-// Función para mostrar modal de "próximamente"
+// Modal for "coming soon"
 function showComingSoonModal(title, message) {
     const modal = document.createElement('div');
     modal.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.8);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 10000;
-        animation: fadeIn 0.3s ease;
+        position:fixed;inset:0;background:rgba(0,0,0,.8);display:flex;justify-content:center;align-items:center;z-index:10000;
     `;
-    
     modal.innerHTML = `
-        <div style="
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            max-width: 500px;
-            width: 90%;
-            text-align: center;
-            animation: slideUp 0.4s ease;
-        ">
-            <i class="fas fa-clock" style="font-size: 3rem; color: #2c5282; margin-bottom: 20px;"></i>
-            <h3 style="color: #2c5282; margin-bottom: 15px;">${title}</h3>
-            <p style="margin-bottom: 25px;">${message}</p>
-            <div style="display: flex; gap: 15px; justify-content: center;">
-                <button id="closeModal" style="
-                    background: linear-gradient(135deg, #2c5282, #38b2ac);
-                    color: white;
-                    border: none;
-                    padding: 12px 30px;
-                    border-radius: 30px;
-                    font-size: 1rem;
-                    font-weight: 600;
-                    cursor: pointer;
-                    transition: all 0.3s ease;
-                ">Cerrar</button>
-            </div>
+        <div style="background:#fff;padding:32px;border-radius:16px;max-width:500px;width:90%;text-align:center;">
+            <i class="fas fa-clock" style="font-size:2.5rem;color:#2c5282;margin-bottom:16px;display:block;"></i>
+            <h3 style="color:#2c5282;margin:0 0 12px;">${title}</h3>
+            <p style="margin:0 0 20px;">${message}</p>
+            <button id="closeModal" style="background:linear-gradient(135deg,#2c5282,#38b2ac);color:#fff;border:none;padding:10px 24px;border-radius:24px;cursor:pointer;">Cerrar</button>
         </div>
     `;
-    
-    document.body.appendChild(modal);
-    
-    // Agregar estilos para animaciones
     const style = document.createElement('style');
     style.textContent = `
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes slideUp {
-            from { 
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to { 
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        @keyframes fadeOut {
-            from { opacity: 1; }
-            to { opacity: 0; }
-        }
+        @keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}@keyframes fadeOut{from{opacity:1}to{opacity:0}}
+        div[style*="inset:0"]{animation:fadeIn .25s ease}
+        div[style*="max-width:500px"]{animation:slideUp .3s ease}
     `;
     document.head.appendChild(style);
-    
-    // Cerrar modal
+    document.body.appendChild(modal);
+
     modal.querySelector('#closeModal').addEventListener('click', () => {
-        modal.style.animation = 'fadeOut 0.3s ease';
+        modal.style.animation = 'fadeOut .25s ease';
         setTimeout(() => {
             document.body.removeChild(modal);
             document.head.removeChild(style);
-        }, 300);
+        }, 250);
     });
-    
-    // Cerrar al hacer clic fuera
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.querySelector('#closeModal').click();
-        }
-    });
+    modal.addEventListener('click', e => { if (e.target === modal) modal.querySelector('#closeModal').click(); });
 }
 
-// Manejar botones de juegos
+// Play / Visit buttons
 document.querySelectorAll('.play-btn').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-        const gameCard = this.closest('.game-card');
-        
-        if (!gameCard.classList.contains('available')) {
+    btn.addEventListener('click', function (e) {
+        const card = this.closest('.game-card');
+        if (card && !card.classList.contains('available')) {
             e.preventDefault();
-            e.stopPropagation();
-            
-            const gameTitle = gameCard.querySelector('h3').textContent;
-            showComingSoonModal(
-                gameTitle,
-                '¡Este juego estará disponible próximamente! Mientras tanto, puedes disfrutar de nuestros otros juegos bíblicos disponibles.'
-            );
+            const title = (card.querySelector('h3') || {}).textContent || 'Juego';
+            showComingSoonModal(title, '¡Este juego estará disponible próximamente!');
         }
     });
 });
-
-// Manejar botones de websites
 document.querySelectorAll('.visit-btn').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-        const websiteCard = this.closest('.website-card');
-        
-        if (!websiteCard.classList.contains('available')) {
+    btn.addEventListener('click', function (e) {
+        const card = this.closest('.website-card');
+        if (card && !card.classList.contains('available')) {
             e.preventDefault();
-            e.stopPropagation();
-            
-            const websiteTitle = websiteCard.querySelector('h3').textContent;
-            showComingSoonModal(
-                websiteTitle,
-                '¡Esta página web estará disponible próximamente! Estamos trabajando para ofrecerte los mejores recursos digitales.'
-            );
+            const title = (card.querySelector('h3') || {}).textContent || 'Sitio';
+            showComingSoonModal(title, '¡Esta página web estará disponible próximamente!');
         }
     });
 });
 
-// Añadir clase de animación a elementos cuando están en vista
-window.addEventListener('scroll', () => {
-    const timelineItems = document.querySelectorAll('.timeline-item');
-    const triggerBottom = window.innerHeight * 0.8;
-    
-    timelineItems.forEach(item => {
-        const itemTop = item.getBoundingClientRect().top;
-        
-        if (itemTop < triggerBottom) {
-            item.classList.add('animated');
-        }
-    });
-});
-
-// Funciones para la sección de horarios
+// Toggle additional info (schedules)
 function toggleAdditionalInfo(infoId) {
-    const infoElement = document.getElementById(infoId);
-    infoElement.classList.toggle('active');
-    
-    // Cambiar el texto del botón
-    const button = infoElement.previousElementSibling;
-    if (infoElement.classList.contains('active')) {
-        button.innerHTML = '<i class="fas fa-times-circle"></i> Ocultar Información';
-    } else {
-        button.innerHTML = '<i class="fas fa-info-circle"></i> Información Especial';
+    const info = document.getElementById(infoId);
+    if (!info) return;
+    info.classList.toggle('active');
+    const button = info.previousElementSibling;
+    if (button) {
+        button.innerHTML = info.classList.contains('active')
+            ? '<i class="fas fa-times-circle"></i> Ocultar Información'
+            : '<i class="fas fa-info-circle"></i> Información Especial';
     }
 }
 
-// Función para obtener el próximo primer domingo
+// Date utilities for "next first Sunday"
 function getNextFirstSunday() {
     const today = new Date();
-    const currentMonth = today.getMonth();
-    const currentYear = today.getFullYear();
-    
-    // Buscar el primer domingo del mes actual
-    let firstSunday = new Date(currentYear, currentMonth, 1);
-    
-    // Avanzar hasta encontrar un domingo (0 = domingo)
-    while (firstSunday.getDay() !== 0) {
-        firstSunday.setDate(firstSunday.getDate() + 1);
+    let d = new Date(today.getFullYear(), today.getMonth(), 1);
+    while (d.getDay() !== 0) d.setDate(d.getDate() + 1);
+    if (d < today) {
+        d = new Date(today.getFullYear(), today.getMonth() + 1, 1);
+        while (d.getDay() !== 0) d.setDate(d.getDate() + 1);
     }
-    
-    // Si el primer domingo ya pasó este mes, buscar en el próximo mes
-    if (firstSunday < today) {
-        firstSunday = new Date(currentYear, currentMonth + 1, 1);
-        while (firstSunday.getDay() !== 0) {
-            firstSunday.setDate(firstSunday.getDate() + 1);
-        }
-    }
-    
-    return firstSunday;
+    return d;
 }
-
-// Función para formatear fecha en español
 function formatDateSpanish(date) {
-    const options = { 
-        weekday: 'long', 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric' 
-    };
-    return date.toLocaleDateString('es-ES', options);
+    return date.toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 }
-
-// Función para actualizar la información de fecha
 function updateDateInfo() {
     const now = new Date();
-    const currentDateElement = document.getElementById('current-date');
-    const nextFirstSundayElement = document.getElementById('next-first-sunday');
-    
-    // Actualizar fecha actual
-    currentDateElement.textContent = formatDateSpanish(now);
-    
-    // Calcular y actualizar próximo primer domingo
-    const nextFirstSunday = getNextFirstSunday();
-    nextFirstSundayElement.textContent = formatDateSpanish(nextFirstSunday);
-    
-    // Verificar si hoy es primer domingo
-    const isFirstSunday = now.getDate() <= 7 && now.getDay() === 0;
-    
-    // Resaltar si hoy es primer domingo
-    if (isFirstSunday) {
-        nextFirstSundayElement.innerHTML = '<strong>¡HOY ES EL PRIMER DOMINGO!</strong>';
-        nextFirstSundayElement.style.color = '#d69e2e';
-        nextFirstSundayElement.style.animation = 'pulse 1s infinite';
+    const cur = document.getElementById('current-date');
+    const next = document.getElementById('next-first-sunday');
+    if (cur) cur.textContent = formatDateSpanish(now);
+    if (next) {
+        const n = getNextFirstSunday();
+        const isFirstSunday = now.getDate() <= 7 && now.getDay() === 0;
+        if (isFirstSunday) {
+            next.innerHTML = '<strong>¡HOY ES EL PRIMER DOMINGO!</strong>';
+            next.style.color = '#d69e2e';
+            next.style.animation = 'pulse 1s infinite';
+        } else {
+            next.textContent = formatDateSpanish(n);
+            next.style.color = '';
+            next.style.animation = '';
+        }
     }
 }
 
-// Inicialización de animaciones en carga
+// Init
 document.addEventListener('DOMContentLoaded', () => {
-    // Añadir retraso de animación a los elementos de navegación
-    document.querySelectorAll('.nav-item').forEach((item, index) => {
-        item.style.animationDelay = `${index * 0.1}s`;
-    });
-    
-    // Añadir retraso de animación a los elementos de galería
-    document.querySelectorAll('.gallery-item').forEach((item, index) => {
-        item.style.animationDelay = `${index * 0.15}s`;
-    });
-    
-    // Marcar juegos no disponibles como deshabilitados
-    document.querySelectorAll('.game-card:not(.available)').forEach(card => {
-        card.classList.add('disabled');
-    });
-    
-    // Marcar websites no disponibles como deshabilitados
-    document.querySelectorAll('.website-card:not(.available)').forEach(card => {
-        card.classList.add('disabled');
-    });
-    
-    // Inicializar botones de información en horarios
-    const infoButtons = document.querySelectorAll('.info-btn');
-    infoButtons.forEach(button => {
-        button.addEventListener('click', function() {
+    document.querySelectorAll('.nav-item').forEach((item, i) => item.style.animationDelay = `${i * 0.1}s`);
+    document.querySelectorAll('.gallery-item').forEach((item, i) => item.style.animationDelay = `${i * 0.15}s`);
+    document.querySelectorAll('.game-card:not(.available), .website-card:not(.available)').forEach(card => card.classList.add('disabled'));
+    document.querySelectorAll('.info-btn').forEach(button => {
+        button.addEventListener('click', function () {
             const infoId = this.getAttribute('data-info');
-            toggleAdditionalInfo(`info-${infoId}`);
+            if (infoId) toggleAdditionalInfo(`info-${infoId}`);
         });
     });
-    
-    // Inicializar información de fecha
     updateDateInfo();
-    
-    // Actualizar la información de fecha cada minuto (opcional)
     setInterval(updateDateInfo, 60000);
-    
-    // Configurar descargas de PDF
-    setupPDFDownloads();
+    if (typeof setupPDFDownloads === 'function') setupPDFDownloads();
 });
