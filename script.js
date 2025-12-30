@@ -329,30 +329,3 @@ document.addEventListener('DOMContentLoaded', () => {
     // Configurar descargas de PDF
     setupPDFDownloads();
 });
-
-// Configurar las descargas de PDF
-function setupPDFDownloads() {
-    // Los enlaces ya están configurados en el HTML con atributos download
-    // Esto asegura que funcionen en todos los dispositivos
-    console.log('Configuración de descargas PDF completada');
-    
-    // Verificar si los archivos existen (opcional)
-    const pdfFiles = [
-        'doc/Dios_siempre_tiene_un_plan.pdf',
-        'doc/Santa_Cena.pdf',
-        'doc/Un_solo_cuerpo.pdf'
-    ];
-    
-    // Mostrar mensaje si algún archivo no está disponible
-    pdfFiles.forEach(file => {
-        fetch(file, { method: 'HEAD' })
-            .then(response => {
-                if (!response.ok) {
-                    console.warn(`Archivo PDF no encontrado: ${file}`);
-                }
-            })
-            .catch(error => {
-                console.warn(`Error al verificar archivo PDF: ${file}`, error);
-            });
-    });
-}
